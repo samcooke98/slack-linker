@@ -10,13 +10,15 @@ var app = express();
 
 app.get('/addIdea', function (req, res ) { 
     console.log(req);
-    if(req.token == "35aJgYpwkeYUbeqzhJhuV30U") { 
+    if(req.body.token == "6zDOEzR6085tU8K7QhCwfB5i") { 
         //Get the text
-        
+        //req.body.text & req.body.response_url 
     } else {
         res.send("Invalid Token");
     }
 })
+
+
 
 app.set('port', (process.env.PORT || 5000));
 
