@@ -44,7 +44,8 @@ app.post('/addIdea', function (req, res ) {
             author: req.body.user_name
         };
         doc.addRow(worksheetID, insertion, function () {});
-        res.send(JSON.stringify({text: `${req.body.user_name} added an idea to the ideas list! Check it out here: ${process.env.SHEET_URL}`, response_type:"in_channel"}));       
+        res.setHeader('Content-Type', 'application/json');
+        res.send(JSON.stringify({text: `${req.body.user_name} added an idea to the ideas list! Check it out here: ${process.env.SHEET_URL}` , response_type:"in_channel"}));       
     } else {
         res.send("Invalid Token");
     }
