@@ -44,7 +44,7 @@ app.post('/addIdea', function (req, res ) {
             author: req.body.user_name
         };
         doc.addRow(worksheetID, insertion, function () {});
-        res.send({text: `${req.body.user_name} added an idea to the ideas list! Check it out here: ${worksheetURL}`, response_type:"in_channel"});       
+        res.send(JSON.stringify({text: `${req.body.user_name} added an idea to the ideas list! Check it out here: ${worksheetURL}`, response_type:"in_channel"}));       
     } else {
         res.send("Invalid Token");
     }
