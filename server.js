@@ -1,8 +1,14 @@
 var slackbots = require('slackbots');
 var express = require('express');
 var GoogleSpreadsheet = require('google-spreadsheet');
+var bodyParser = require('body-parser');
 
 var app = express();
+
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 /* Idea List - 
     /idea A sentence or two to remind you what your idea is
