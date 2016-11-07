@@ -17,11 +17,12 @@ function connectToGSheets() {
     function () { 
         doc.getInfo(function( object ) { 
             console.log(object.worksheets[0]);
-                
+
         })
     })
 }
 
+connectToGSheets();
 
 app.get('/addIdea', function (req, res ) { 
     console.log(req);
