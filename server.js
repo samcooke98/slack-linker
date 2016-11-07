@@ -14,9 +14,6 @@ var worksheetID;
 var worksheetURL;
 
 function connectToGSheets() { 
-    console.log(process.env.GOOGLE_PRIVATE_KEY);
-    var creds_json = require('./bitSlack-c803d714d227.json');
-    console.log(creds_json.private_key);
     doc.useServiceAccountAuth({ client_email: 'slackapi@bitslack-148811.iam.gserviceaccount.com', private_key: process.env.GOOGLE_PRIVATE_KEY },
     function () { 
         doc.getInfo(function( err, info ) { 
