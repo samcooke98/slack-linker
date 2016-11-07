@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/samcooke98/slack-linker#readme",
   "dependencies": {
+    "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "google-spreadsheet": "^2.0.3",
     "slackbots": "^0.5.3"
