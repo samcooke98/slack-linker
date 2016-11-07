@@ -43,7 +43,7 @@ app.post('/addIdea', function (req, res ) {
             idea: req.body.text,
             author: req.body.user_name
         };
-        worksheet.addRow(worksheetID, insertion, function () { 
+        doc.addRow(worksheetID, insertion, function () { 
             res.send(`${req.body.user_name} add an idea to the ideas list! Check it out here: ${worksheetURL}`)       
         })
     } else {
