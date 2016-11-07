@@ -10,13 +10,20 @@ var app = express();
 */
 
 var doc = new GoogleSpreadsheet('1ik-amGj9udS8Ib3AGh7s4yuWW_p2TECjX-DpfG8yrv0');
-var sheet;
+var worksheetID;
+var worksheetURL;
 
 function connectToGSheets() { 
+    console.log(process.env.GOOGLE_PRIVATE_KEY);
+    var creds_json = require('./bitSlack-c803d714d227.json');
+    console.log(creds_json.private_key);
     doc.useServiceAccountAuth({ client_email: 'slackapi@bitslack-148811.iam.gserviceaccount.com', private_key: process.env.GOOGLE_PRIVATE_KEY },
     function () { 
-        doc.getInfo(function( object ) { 
-            console.log(object.worksheets[0]);
+        doc.getInfo(function( err, info ) { 
+            console.log(info)
+            console.log(info.worksheets[0]);
+            worksheetID = info.worksheets[0].id;
+            worksheetURL = info.worksheets[0].url;
 
         })
     })
@@ -24,11 +31,18 @@ function connectToGSheets() {
 
 connectToGSheets();
 
-app.get('/addIdea', function (req, res ) { 
+app.post('/addIdea', function (req, res ) { 
     console.log(req);
     if(req.body.token == "6zDOEzR6085tU8K7QhCwfB5i") { 
         //Get the text
         //req.body.text & req.body.response_url 
+        var insertion = { 
+            idea: req.body.text,
+            author: req.body.user_name
+        };
+        worksheet.addRow(worksheetID, insertion, function () { 
+            res.send(`${req.body.user_name} add an idea to the ideas list! Check it out here: ${worksheetURL}`)       
+        })
     } else {
         res.send("Invalid Token");
     }
